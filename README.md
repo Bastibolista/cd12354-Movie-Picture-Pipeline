@@ -136,7 +136,7 @@ terraform output
 
 ### Generate AWS access keys for Github Actions
 
-1. Once everything is created, you'll need to generate AWS credentials for the IAM user account that Github Actions will use in order to interact with your AWS account.
+1. Once everything is created, you'll need to generate AWS credentials for the IAM usernt t accouhat Github Actions will use in order to interact with your AWS account.
 2. Launch the Cloud Gateway and go to the IAM service.
 3. Under users, you should only see the `github-action-user` user account
 4. Click the account and go to `Security Credentials`
