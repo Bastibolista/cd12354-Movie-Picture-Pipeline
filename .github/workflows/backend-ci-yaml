@@ -1,0 +1,61 @@
+name: Backend CI
+
+on: 
+  push:
+    branches:
+      - main
+      
+  # Automatic trigger on pull requests that are closed to the main branch
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'starter/backend/**'
+  # Manual trigger using the workflow_dispatch event
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: ./starter/backend
+
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
+
+        - name: Setup python
+          uses: actions/setup-python@v5
+          with:
+            python-version: latest
+        
+        - name: install pip env
+          run: |
+            pip install pipenv --user
+            pip install flake8
+        
+        - name: Run linting
+          run: pipenv run lint
+    
+    test:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
+
+        - name: Setup python
+          uses: actions/setup-python@v5
+          with:
+            python-version: latest
+        
+        - name: install pip env
+          run: |
+            pip install pipenv --user
+            pip install flake8
+        
+        - name: install dependencies
+          run: pipenv install
+
+        - name: run test
+          run: pipenv run test
